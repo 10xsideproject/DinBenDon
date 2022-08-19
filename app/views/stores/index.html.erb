@@ -1,3 +1,13 @@
 <h1 class="text-3xl font-bold underline bg-red-300">
-    Hello world!
+    Welcome DinBenDon platform!!!
 </h1>
+<h2>Store List</h2>
+<ul>
+  <% @stores.each do |store| %>
+    <li>
+      <%= link_to store.name, store %>
+      <%= link_to "編輯", edit_store_path(store.id) %>
+      <%= link_to "刪除", store, method: "delete", data: {confirm: "Are you sure?"} %>
+    </li>
+  <% end %>  
+</ul>
