@@ -18,6 +18,7 @@ class ProductsController < ApplicationController
     else
     #   render "stores/show"
     redirect_to store_url(@store) , notice: "商品建立失敗"
+      redirect_to store_url(@store), notice: "商品建立失敗"
     end
   end
   def show
