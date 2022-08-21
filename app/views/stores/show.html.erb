@@ -47,6 +47,10 @@
     <%= f.label :qunitiy , "數量" %>
     <%= f.number_field :qunitiy  %>
   </div> 
+  <div>
+    <%= f.label :product_id , "金額" %>
+    <%= f.collection_select :product_id, Product.all, :id, :price %>
+  </div>
   <%= f.submit '訂購' %> 
 <% end %> 
   
