@@ -9,6 +9,8 @@
     <li>
       <%= product.name %>
       <%= product.price %>
+      <%= link_to "編輯商品", edit_product_path(product.id, store_id: product.store_id) %>
+      <%= link_to "刪除商品", product_path(product.id, store_id: product.store_id), method: "delete" %>
     </li>
   <% end %>  
 </ul>
@@ -17,11 +19,11 @@
 
 <%= form_with model: @product do |f| %>
   <div>
-    <%= f.label :name , '店名' %>
+    <%= f.label :name , '商品名稱' %>
     <%= f.text_field :name %>
   </div>
   <div>
-    <%= f.label :price , '價格' %>
+    <%= f.label :price , '商品價格' %>
     <%= f.number_field :price %>
   </div>
   <div>

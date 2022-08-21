@@ -1,2 +1,14 @@
-<h1>編輯商品</h1>
-<%= render "form", product: @product %>
+<%= form_with model: @product do |f| %>
+  <div>
+    <%= f.label :name , '店名' %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :price , '價格' %>
+    <%= f.number_field :price %>
+  </div>
+  <div>
+    <%= f.hidden_field :store_id, readonly: true %>
+  </div>
+  <%= f.submit '送出' %>
+<% end %>

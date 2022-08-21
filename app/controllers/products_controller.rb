@@ -1,13 +1,14 @@
 class ProductsController < ApplicationController
+  before_action :find_product, only: [:edit, :update, :destroy]
+  before_action :find_store , only: [:create, :update]
   def index
     @products = Product.all
   end
   def new
     # render html: params
-    @product = Product.new
+    # @product = Product.new
   end
   def create 
-    find_store
     @product = Product.new(params_product)   
     # render json:@product
     # @product.save
@@ -17,7 +18,7 @@ class ProductsController < ApplicationController
       redirect_to store_url(@store), notice: "商品建立成功"
     else
     #   render "stores/show"
-    redirect_to store_url(@store) , notice: "商品建立失敗"
+    # redirect_to store_url(@store) , notice: "商品建立失敗"
       redirect_to store_url(@store), notice: "商品建立失敗"
     end
   end
@@ -28,10 +29,16 @@ class ProductsController < ApplicationController
     
   end
   def update
-    
+    if @product.update(params_product)
+      redirect_to store_url(@store), notice: "商品更新成功"
+    else
+      redirect_to store_url(@store), notice: "商品更新失敗"
+    end
   end
   def destroy
-    
+    @store = params[:store_id]
+    @product.destroy
+    redirect_to store_url(@store), notice: "商品刪除成功"
   end
 
   private
