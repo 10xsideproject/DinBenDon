@@ -17,6 +17,7 @@
 
 <%# <%= link_to "新增商品", new_product_path(store_id: @product.store_id) %> 
 
+<h2>新增商品</h2>
 <%= form_with model: @product do |f| %>
   <div>
     <%= f.label :name , '商品名稱' %>
@@ -31,3 +32,21 @@
   </div>
   <%= f.submit '送出' %>
 <% end %>
+
+<h2>訂購商品</h2>
+<%= form_with model: @order, method: 'post' do |f| %> 
+  <div>
+    <%= f.label :name , "姓名" %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :product_id , "品項" %>
+    <%= f.collection_select :product_id, Product.all, :id, :name  %>
+  </div>
+  <div>
+    <%= f.label :qunitiy , "數量" %>
+    <%= f.number_field :qunitiy  %>
+  </div> 
+  <%= f.submit '訂購' %> 
+<% end %> 
+  

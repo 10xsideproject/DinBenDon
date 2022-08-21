@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   before_action :find_product, only: [:edit, :update, :destroy]
   before_action :find_store , only: [:create, :update]
   def index
-    @products = Product.all
+    @products = Product.all.includes(:order)
   end
   def new
     # render html: params

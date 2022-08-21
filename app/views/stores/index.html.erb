@@ -9,3 +9,14 @@
     </li>
   <% end %>  
 </ul>
+
+<ul>
+  <% @orders.each do |order| %>
+  <li>
+    <%= order.name %>
+    <%= order.product.name %>
+    <%= order.product.price %>
+    <%= link_to "刪除", order, method: "delete" %>
+  </li>
+  <% end %>
+</ul>

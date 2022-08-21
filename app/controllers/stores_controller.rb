@@ -2,6 +2,7 @@ class StoresController < ApplicationController
   before_action :find_store, only: [:show, :edit, :edit, :update, :destroy]
   def index
     @stores = Store.all
+    @orders = Order.all
   end
   def new
     @store = Store.new
@@ -17,6 +18,9 @@ class StoresController < ApplicationController
   def show
     @products = @store.products.all
     @product = @store.products.new
+
+    @orders = Order.all
+    @order = Order.new
   end
   def edit
     
