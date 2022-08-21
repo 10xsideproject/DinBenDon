@@ -1,4 +1,16 @@
 <%= form_for(store) do |f| %>
-    
+  <div>
+    <%= f.label :name , '店名' %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :address , '地址' %>
+    <%= f.text_field :address %>
+  </div>
+  <div>
+    <%= f.label :tel , '電話' %>
+    <%= f.text_field :tel %>
+  </div>
+  <%= f.submit '送出' %>
 <% end %>
   

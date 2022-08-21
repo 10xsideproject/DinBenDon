@@ -1,0 +1,12 @@
+<%= form_for(product) do |f| %>
+  <div>
+    <%= f.label :name , '店名' %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :price , '價格' %>
+    <%= f.number_field :price %>
+  </div>
+  <%= f.submit '送出' %>
+<% end %>
+  

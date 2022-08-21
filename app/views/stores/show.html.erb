@@ -4,3 +4,15 @@
   <li><%= @store.tel %></li>
 </ul>
 
+<ul>
+  <% @products.each do |product| %>
+    <li>
+      <%= product.name %>
+      <%= product.price %>
+    </li>
+  <% end %>  
+</ul>
+
+<%= link_to "新增商品", new_product_path %>
+
+  

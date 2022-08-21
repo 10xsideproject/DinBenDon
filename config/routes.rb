@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
-  resources :stroes
+  resources :stores
   resources :products
 end
