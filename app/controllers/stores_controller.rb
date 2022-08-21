@@ -15,8 +15,8 @@ class StoresController < ApplicationController
     end
   end
   def show
-    @products = Product.all
-    @product = Product.new
+    @products = @store.products.all
+    @product = @store.products.new
   end
   def edit
     

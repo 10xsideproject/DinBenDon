@@ -13,6 +13,19 @@
   <% end %>  
 </ul>
 
-<%= link_to "新增商品", new_product_path %>
+<%# <%= link_to "新增商品", new_product_path(store_id: @product.store_id) %> 
 
-  
+<%= form_with model: @product do |f| %>
+  <div>
+    <%= f.label :name , '店名' %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :price , '價格' %>
+    <%= f.number_field :price %>
+  </div>
+  <div>
+    <%= f.hidden_field :store_id %>
+  </div>
+  <%= f.submit '送出' %>
+<% end %>

@@ -3,15 +3,17 @@ class ProductsController < ApplicationController
     @products = Product.all
   end
   def new
+    # render html: params
     @product = Product.new
   end
   def create 
     # render html: params
+    find_store
     @product = Product.new(params_product)   
     if @product.save
-      redirect_to store_url(store), notice: "商品建立成功"
+      redirect_to store_url(@store), notice: "商品建立成功"
     else
-      render :new
+      render "stores/show"
     end
   end
   def show
@@ -34,4 +36,8 @@ class ProductsController < ApplicationController
   def find_product
     @product = Product.find(params[:id])
   end
+  def find_store
+    @store = Store.find(params[:product][:store_id])
+  end  
+
 end
