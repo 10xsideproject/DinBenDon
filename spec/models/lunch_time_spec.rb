@@ -7,6 +7,7 @@ RSpec.describe LunchTime, type: :model do
       create(:product, name: product, price: 30 + i * 19, store: create(:store))
     }
   }
+
   it 'It\'s just work!!' do
     # A = Arrange
     a = 1
@@ -44,8 +45,20 @@ RSpec.describe LunchTime, type: :model do
     expect(lunch_time.items.first.total_price).to be 90
     expect(lunch_time.items.second.total_price).to be 147
   end
+
+  it '整份訂單可以計算全部的金額（總計）' do
+    lunch_time = LunchTime.new
+    names = name_geneator
+    products = product_geneator
+    
+    10.times { |i|
+      order = create(:order, name: names[i % 4], product: products[i % 4])
+      lunch_time.add(order[:name], order[:product_id], order[:quantity])
+    }
+
+    expect(lunch_time.total_price).to be 547
+  end
   
-  it '整份訂單可以計算全部的金額（總計）' do  end
   it '可以隨機下訂一份單品（從大家點過的）' do  end
   it '可以隨機下訂一份單品（從所有選擇）' do  end
   it '可以將ＸＸ內容轉換成 Hash 並存到 Session' do  end

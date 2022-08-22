@@ -16,4 +16,8 @@ class LunchTime
       @items << RichContentOrder.new(name, product_id, quantity)
     end
   end
+
+  def total_price
+    total = @items.sum(&:total_price)
+  end
 end

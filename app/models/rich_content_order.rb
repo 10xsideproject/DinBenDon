@@ -15,7 +15,7 @@ class RichContentOrder
     Product.find(@product_id)
   end
   
-  def total_price
+  def total_price(_ = nil)
     @quantity * product.price
   end
 end
