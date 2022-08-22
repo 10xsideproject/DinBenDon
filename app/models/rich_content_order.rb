@@ -10,4 +10,12 @@ class RichContentOrder
   def increment(quantity = 1)
     @quantity = @quantity + quantity
   end
+
+  def product
+    Product.find(@product_id)
+  end
+  
+  def total_price
+    @quantity * product.price
+  end
 end
