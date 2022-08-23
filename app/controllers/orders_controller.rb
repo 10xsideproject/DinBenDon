@@ -25,9 +25,6 @@ class OrdersController < ApplicationController
 
   def edit
   end
-  # def update
-
-  # end
   def destroy
     @order.destroy
     redirect_to root_url, notice: '訂單刪除成功'
@@ -36,7 +33,7 @@ class OrdersController < ApplicationController
   private
 
   def params_order
-    params.require(:order).permit(:name, :quantity, :product_id)
+    params.require(:order).permit(:name, :quantity, :product_id).merge(quantity: 1)
   end
 
   def find_order
