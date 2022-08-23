@@ -36,7 +36,7 @@ class OrdersController < ApplicationController
   private
 
   def params_order
-    params.require(:order).permit(:name, :qunaitiy, :product_id)
+    params.require(:order).permit(:name, :quanitiy, :product_id)
   end
 
   def find_order

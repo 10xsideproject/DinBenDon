@@ -1,3 +1,11 @@
-// Place all the styles related to the stores controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+@media (max-width: 991px) {
+  #buy {
+    order: -1;
+  }
+}
+
+#product_list {
+}
+#new_product {
+  order: 1;
+}

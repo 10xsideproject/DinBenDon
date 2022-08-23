@@ -5,6 +5,7 @@ class StoresController < ApplicationController
   def index
     @stores = Store.all
     @orders = Order.all
+    # @total_price = Order.total_price
   end
 
   def new

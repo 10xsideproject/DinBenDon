@@ -1,22 +1,54 @@
-<h1>商家列表 <span><%= link_to "新增商家", new_store_path %></span></h1>
-
-<ul>
-  <% @stores.each do |store| %>
-    <li>
-      <%= link_to store.name, store %>
-      <%= link_to "編輯商家", edit_store_path(store.id) %>
-      <%= link_to "刪除商家", store, method: "delete", data: {confirm: "確定刪除嗎？"} %>
-    </li>
-  <% end %>  
-</ul>
-
-<ul>
-  <% @orders.each do |order| %>
-  <li>
-    <%= order.name %>
-    <%= order.product.name %>
-    <%= order.product.price %>
-    <%= link_to "刪除", order, method: "delete" %>
-  </li>
-  <% end %>
-</ul>
+<div class="row">
+  <div class="col">
+    <h1>商家列表 <span><%= link_to "新增商家", new_store_path %></span></h1>
+    <ul>
+      <% @stores.each do |store| %>
+        <li>
+          <%= link_to store.name, store %>
+          <%= link_to "編輯商家", edit_store_path(store.id) %>
+          <%= link_to "刪除商家", store, method: "delete", data: {confirm: "確定刪除嗎？"} %>
+        </li>
+      <% end %>
+    </ul>
+    <ul>
+      <% @orders.each do |order| %>
+        <li>
+          <%= order.name %>
+          <%= order.product.name %>
+          <%= order.product.price %>
+          <%= link_to "刪除", order, method: "delete" %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="col">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>品項</th>
+          <th>金額</th>
+          <th>小計</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @orders.each do |order| %>
+          <tr>
+            <td><%= order.name %></td>
+            <td><%= order.product.name %></td>
+            <td><%= order.product.price %></td>
+            <td> </td>
+          </tr>
+        <% end %>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th>合計</th>
+          <th>品項</th>
+          <th><%= @total_price %></th>
+          <th>小計</th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>

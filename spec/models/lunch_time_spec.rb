@@ -25,7 +25,7 @@ RSpec.describe LunchTime, type: :model do
     
     10.times { |i|
       order = create(:order, name: names[i % 4], product: products[i % 4])
-      lunch_time.add(order[:name], order[:product_id], order[:quantity])
+      lunch_time.add(order.id)
     }
 
     expect(lunch_time.items.count).to be 4
@@ -39,7 +39,7 @@ RSpec.describe LunchTime, type: :model do
     
     10.times { |i|
       order = create(:order, name: names[i % 4], product: products[i % 4])
-      lunch_time.add(order[:name], order[:product_id], order[:quantity])
+      lunch_time.add(order.id)
     }
 
     expect(lunch_time.items.first.total_price).to be 90
@@ -53,7 +53,7 @@ RSpec.describe LunchTime, type: :model do
     
     10.times { |i|
       order = create(:order, name: names[i % 4], product: products[i % 4])
-      lunch_time.add(order[:name], order[:product_id], order[:quantity])
+      lunch_time.add(order.id)
     }
 
     expect(lunch_time.total_price).to be 547

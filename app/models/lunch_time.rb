@@ -7,7 +7,11 @@ class LunchTime
     @items = items
   end
 
-  def add(name, product_id, quantity = 1)
+  def add(order_id)
+    order = Order.find(order_id)
+    name = order.name
+    product_id = order.product.id
+    quantity = order.quantity
     found_item = @items.find { |item| item.product_id == product_id }
 
     if found_item

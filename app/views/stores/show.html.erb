@@ -1,56 +1,48 @@
 <ul>
-  <li><%= @store.name %></li>
-  <li><%= @store.address %></li>
-  <li><%= @store.tel %></li>
+  <li class="h3"><%= @store.name %></li>
+  <li class="h3"><%= @store.address %></li>
+  <li class="h3"><%= @store.tel %></li>
 </ul>
-
-<ul>
-  <% @products.each do |product| %>
-    <li>
-      <%= product.name %>
-      <%= product.price %>
-      <%= link_to "編輯商品", edit_product_path(product.id, store_id: product.store_id) %>
-      <%= link_to "刪除商品", product_path(product.id, store_id: product.store_id), method: "delete" %>
-    </li>
-  <% end %>  
-</ul>
-
-<%# <%= link_to "新增商品", new_product_path(store_id: @product.store_id) %> 
-
-<h2>新增商品</h2>
-<%= form_with model: @product do |f| %>
-  <div>
-    <%= f.label :name , '商品名稱' %>
-    <%= f.text_field :name %>
+<div class="row" id="store_content">
+  <ul class="col-sm-12 col-lg-4" id="product_list">
+    <% @products.each do |product| %>
+      <li class="mb-2">
+        <%= product.name %>
+        <%= product.price %>
+        <%= link_to "編輯商品", edit_product_path(product.id, store_id: product.store_id) %>
+        <%= link_to "刪除商品", product_path(product.id, store_id: product.store_id), method: "delete" %>
+      </li>
+    <% end %>
+  </ul>
+  <div class="col-sm-12" id="new_product">
+    <h2>新增商品</h2>
+    <%= form_with model: @product do |f| %>
+      <div class="mb-3">
+        <%= f.label :name , '商品名稱', class: 'form-label' %>
+        <%= f.text_field :name, class: 'form-control' %>
+      </div>
+      <div class="mb-3">
+        <%= f.label :price , '商品價格', class: 'form-label' %>
+        <%= f.number_field :price, class: 'form-control' %>
+      </div>
+      <div>
+        <%= f.hidden_field :store_id, class: 'form-control' %>
+      </div>
+      <%= f.submit '送出', class: 'btn btn-primary' %>
+    <% end %>
   </div>
-  <div>
-    <%= f.label :price , '商品價格' %>
-    <%= f.number_field :price %>
+  <div class="col-sm-12 col-lg-8" id="buy">
+    <h2>訂購商品</h2>
+    <%= form_with model: @order, method: 'post' do |f| %>
+      <div class="mb-3">
+        <%= f.label :name , "姓名", class: 'form-label' %>
+        <%= f.text_field :name, class: 'form-control' %>
+      </div>
+      <div class="mb-3">
+        <%= f.label :product_id , "品項", class: 'form-label' %>
+        <%= f.collection_select :product_id, @store.products, :id, :name, class: 'form-control' %>
+      </div>
+      <%= f.submit '訂購', class: 'btn btn-primary' %>
+    <% end %>
   </div>
-  <div>
-    <%= f.hidden_field :store_id %>
-  </div>
-  <%= f.submit '送出' %>
-<% end %>
-
-<h2>訂購商品</h2>
-<%= form_with model: @order, method: 'post' do |f| %> 
-  <div>
-    <%= f.label :name , "姓名" %>
-    <%= f.text_field :name %>
-  </div>
-  <div>
-    <%= f.label :product_id , "品項" %>
-    <%= f.collection_select :product_id, Product.all, :id, :name  %>
-  </div>
-  <div>
-    <%= f.label :qunitiy , "數量" %>
-    <%= f.number_field :qunitiy  %>
-  </div> 
-  <div>
-    <%= f.label :product_id , "金額" %>
-    <%= f.collection_select :product_id, Product.all, :id, :price %>
-  </div>
-  <%= f.submit '訂購' %> 
-<% end %> 
-  
+</div>
